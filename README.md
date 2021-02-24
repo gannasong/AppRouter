@@ -17,6 +17,7 @@
 - [ ] 列出的 url path 都需確實被註冊到 navigator 上
 
 ## Flowchart
+<img alt="01_trending_repository_screen" src="Images/flowchart_01.png?raw=true">&nbsp;
 ```flow
 st=>start: 使用者點擊 universal link
 op=>operation: 啟動 App
