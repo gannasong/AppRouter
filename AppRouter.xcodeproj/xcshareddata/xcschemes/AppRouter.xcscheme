@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "60A84709FF9EC1574CF64E12ED132B56"
-               BuildableName = "Pods_AppRouter_AppRouterTests.framework"
-               BlueprintName = "Pods-AppRouter-AppRouterTests"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "499BB0DC25E65CB5002E31AC"
+               BuildableName = "AppRouter.framework"
+               BlueprintName = "AppRouter"
+               ReferencedContainer = "container:AppRouter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,8 +26,30 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "499BB0DC25E65CB5002E31AC"
+            BuildableName = "AppRouter.framework"
+            BlueprintName = "AppRouter"
+            ReferencedContainer = "container:AppRouter.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
+         <TestableReference
+            skipped = "NO"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "499BB0E525E65CB5002E31AC"
+               BuildableName = "AppRouterTests.xctest"
+               BlueprintName = "AppRouterTests"
+               ReferencedContainer = "container:AppRouter.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -47,6 +69,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "499BB0DC25E65CB5002E31AC"
+            BuildableName = "AppRouter.framework"
+            BlueprintName = "AppRouter"
+            ReferencedContainer = "container:AppRouter.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
