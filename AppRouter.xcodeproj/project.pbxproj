@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2469B599967388F282943C57 /* Pods_AppRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B442444482B99C4E892335EE /* Pods_AppRouter.framework */; };
+		3AAB67715203E16922372DF5 /* Pods_AppRouter_AppRouterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E672EAD0AD901ACDF685473 /* Pods_AppRouter_AppRouterTests.framework */; };
 		499BB0E725E65CB5002E31AC /* AppRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499BB0DD25E65CB5002E31AC /* AppRouter.framework */; };
 		499BB0EC25E65CB5002E31AC /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BB0EB25E65CB5002E31AC /* AppRouterTests.swift */; };
 		499BB0EE25E65CB5002E31AC /* AppRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 499BB0E025E65CB5002E31AC /* AppRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,12 +25,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080BCBD46A64515FB7A50483 /* Pods-AppRouter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter.release.xcconfig"; path = "Target Support Files/Pods-AppRouter/Pods-AppRouter.release.xcconfig"; sourceTree = "<group>"; };
+		0B9344311B435699FCDFBDCA /* Pods-AppRouter-AppRouterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter-AppRouterTests.release.xcconfig"; path = "Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests.release.xcconfig"; sourceTree = "<group>"; };
+		0C1D9D35A890B22669CDF3FA /* Pods-AppRouter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter/Pods-AppRouter.debug.xcconfig"; sourceTree = "<group>"; };
+		3E672EAD0AD901ACDF685473 /* Pods_AppRouter_AppRouterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppRouter_AppRouterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499BB0DD25E65CB5002E31AC /* AppRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		499BB0E025E65CB5002E31AC /* AppRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppRouter.h; sourceTree = "<group>"; };
 		499BB0E125E65CB5002E31AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		499BB0E625E65CB5002E31AC /* AppRouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppRouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		499BB0EB25E65CB5002E31AC /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
 		499BB0ED25E65CB5002E31AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B442444482B99C4E892335EE /* Pods_AppRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7AC56C05BB53121E92FFA49 /* Pods-AppRouter-AppRouterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter-AppRouterTests.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2469B599967388F282943C57 /* Pods_AppRouter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				499BB0E725E65CB5002E31AC /* AppRouter.framework in Frameworks */,
+				3AAB67715203E16922372DF5 /* Pods_AppRouter_AppRouterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,8 @@
 				499BB0DF25E65CB5002E31AC /* AppRouter */,
 				499BB0EA25E65CB5002E31AC /* AppRouterTests */,
 				499BB0DE25E65CB5002E31AC /* Products */,
+				AFA54ABDB401D4D3413A2376 /* Pods */,
+				622525FDAFF2A98040E14012 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +98,27 @@
 			path = AppRouterTests;
 			sourceTree = "<group>";
 		};
+		622525FDAFF2A98040E14012 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B442444482B99C4E892335EE /* Pods_AppRouter.framework */,
+				3E672EAD0AD901ACDF685473 /* Pods_AppRouter_AppRouterTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFA54ABDB401D4D3413A2376 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C1D9D35A890B22669CDF3FA /* Pods-AppRouter.debug.xcconfig */,
+				080BCBD46A64515FB7A50483 /* Pods-AppRouter.release.xcconfig */,
+				E7AC56C05BB53121E92FFA49 /* Pods-AppRouter-AppRouterTests.debug.xcconfig */,
+				0B9344311B435699FCDFBDCA /* Pods-AppRouter-AppRouterTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 499BB0F125E65CB5002E31AC /* Build configuration list for PBXNativeTarget "AppRouter" */;
 			buildPhases = (
+				B3B1DB08A5F975FEE6D13BDF /* [CP] Check Pods Manifest.lock */,
 				499BB0D825E65CB5002E31AC /* Headers */,
 				499BB0D925E65CB5002E31AC /* Sources */,
 				499BB0DA25E65CB5002E31AC /* Frameworks */,
@@ -122,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 499BB0F425E65CB5002E31AC /* Build configuration list for PBXNativeTarget "AppRouterTests" */;
 			buildPhases = (
+				E9484557C2F02A5A87978DA1 /* [CP] Check Pods Manifest.lock */,
 				499BB0E225E65CB5002E31AC /* Sources */,
 				499BB0E325E65CB5002E31AC /* Frameworks */,
 				499BB0E425E65CB5002E31AC /* Resources */,
+				4FAC0552C3F01FC0E094F719 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +224,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FAC0552C3F01FC0E094F719 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3B1DB08A5F975FEE6D13BDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppRouter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9484557C2F02A5A87978DA1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AppRouter-AppRouterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		499BB0D925E65CB5002E31AC /* Sources */ = {
@@ -340,6 +440,7 @@
 		};
 		499BB0F225E65CB5002E31AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C1D9D35A890B22669CDF3FA /* Pods-AppRouter.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -364,6 +465,7 @@
 		};
 		499BB0F325E65CB5002E31AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 080BCBD46A64515FB7A50483 /* Pods-AppRouter.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -388,6 +490,7 @@
 		};
 		499BB0F525E65CB5002E31AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7AC56C05BB53121E92FFA49 /* Pods-AppRouter-AppRouterTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;
@@ -406,6 +509,7 @@
 		};
 		499BB0F625E65CB5002E31AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B9344311B435699FCDFBDCA /* Pods-AppRouter-AppRouterTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;

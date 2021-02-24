@@ -1,0 +1,16 @@
+PODS:
+  - URLNavigator (2.3.0)
+
+DEPENDENCIES:
+  - URLNavigator
+
+SPEC REPOS:
+  trunk:
+    - URLNavigator
+
+SPEC CHECKSUMS:
+  URLNavigator: 2593c0e2d293732ec5c44503cf54dceba1a68085
+
+PODFILE CHECKSUM: e2c38b3fe47a7ca88a286ace2b5724a205d1c8a9
+
+COCOAPODS: 1.10.1
