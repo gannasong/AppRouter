@@ -1,6 +1,6 @@
 //
-//  AppRouter.swift
-//  AppRouter
+//  Router.swift
+//  Router
 //
 //  Created by SUNG HAO LIN on 2021/2/25.
 //
@@ -11,10 +11,10 @@ import URLNavigator
 public protocol NavigatorProxy {
   var navigator: Navigator { get set }
 
-  func register(from paths: [String])
+  func register(from paths: [String], completion: () -> Void)
 }
 
-public class AppRouter {
+public class Router {
   private let proxy: NavigatorProxy
   private let urls: [String]
 
@@ -24,8 +24,8 @@ public class AppRouter {
   }
 
   public func setNavigationMap() {
-    proxy.register(from: urls)
+    proxy.register(from: urls) {
+      // do production register
+    }
   }
 }
-
-
