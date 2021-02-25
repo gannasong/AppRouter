@@ -11,11 +11,18 @@ import URLNavigator
 
 class AppRouter {}
 
+class NavigatorProxy {
+  let navigator = Navigator()
+}
+
 class AppRouterTests: XCTestCase {
 
   func test_init_navigatorProxyNavigatorShouldNotNil() {
-    let navigator = Navigator()
+    let proxy = NavigatorProxy()
     _ = AppRouter()
-    XCTAssertNotNil(navigator)
+    XCTAssertNotNil(proxy.navigator)
+  }
+
+  func test_init_navigatorShouldRegisterOnePath() {
   }
 }
