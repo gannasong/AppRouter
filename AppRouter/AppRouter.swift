@@ -11,20 +11,20 @@ import URLNavigator
 public protocol NavigatorProxy {
   var navigator: Navigator { get set }
 
-  func register(from path: String)
+  func register(from paths: [String])
 }
 
 public class AppRouter {
   private let proxy: NavigatorProxy
-  private let url: String
+  private let urls: [String]
 
-  public init(url: String, proxy: NavigatorProxy) {
-    self.url = url
+  public init(urls: [String], proxy: NavigatorProxy) {
+    self.urls = urls
     self.proxy = proxy
   }
 
   public func setNavigationMap() {
-    proxy.register(from: url)
+    proxy.register(from: urls)
   }
 }
 

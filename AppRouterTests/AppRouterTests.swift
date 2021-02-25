@@ -17,40 +17,44 @@ class AppRouterTests: XCTestCase {
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
-    let url = "https://first-test-url.com"
-    let (sut, proxy) = makeSUT(url: url)
+    let path = TestPaths.firstPath.rawValue
+    let (sut, proxy) = makeSUT(urls: [path])
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURL, url)
+    XCTAssertEqual(proxy.registeredURLs, [path])
   }
 
   func test_init_navigatorShouldRegisterTwoPaths() {
-    let url = "https://first-test-url.com"
-    let (sut, proxy) = makeSUT(url: url)
+    let firstPath = TestPaths.firstPath.rawValue
+    let secondPath = TestPaths.secondPath.rawValue
+    let (sut, proxy) = makeSUT(urls: [firstPath, secondPath])
 
     sut.setNavigationMap()
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, [url, url])
+    XCTAssertEqual(proxy.registeredURLs, [firstPath, secondPath])
   }
 
   // MARK: - Helpers
 
-  private func makeSUT(url: String = "https://first-test-url.com") -> (sut: AppRouter, proxy: NavigatorProxySpy) {
+  private func makeSUT(urls: [String] = ["https://first-test-url.com"]) -> (sut: AppRouter, proxy: NavigatorProxySpy) {
     let proxy = NavigatorProxySpy()
-    let sut = AppRouter(url: url, proxy: proxy)
+    let sut = AppRouter(urls: urls, proxy: proxy)
     return (sut, proxy)
   }
 
   private class NavigatorProxySpy: NavigatorProxy {
     var navigator: Navigator = Navigator()
-    var registeredURL: String?
     var registeredURLs = [String]()
 
-    func register(from path: String) {
-      registeredURL = path
-      registeredURLs.append(path)
+    func register(from paths: [String]) {
+      registeredURLs = paths
     }
+  }
+
+  private enum TestPaths: String, CaseIterable {
+    case firstPath = "https://first-test-url.com"
+    case secondPath = "https://second-test-url.com"
   }
 }
