@@ -11,13 +11,16 @@ import URLNavigator
 
 class AppRouter {
   let proxy: NavigatorProxy
+  let url: String
 
-  init(proxy: NavigatorProxy) {
+  init(url: String, proxy: NavigatorProxy) {
+    self.url = url
     self.proxy = proxy
   }
 
   func setNavigationMap() {
-    proxy.register(from: "https://first-test-url.com")
+    // "https://first-test-url.com"
+    proxy.register(from: url)
   }
 }
 
@@ -39,18 +42,20 @@ class NavigatorProxySpy: NavigatorProxy {
 class AppRouterTests: XCTestCase {
 
   func test_init_navigatorProxyNavigatorShouldNotNil() {
+    let url = "https://first-test-url.com"
     let proxy = NavigatorProxySpy()
-    _ = AppRouter(proxy: proxy)
+    _ = AppRouter(url: url, proxy: proxy)
 
     XCTAssertNotNil(proxy.navigator)
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
+    let url = "https://first-test-url.com"
     let proxy = NavigatorProxySpy()
-    let sut = AppRouter(proxy: proxy)
+    let sut = AppRouter(url: url, proxy: proxy)
 
     sut.setNavigationMap()
 
-    XCTAssertNotNil(proxy.registeredURL)
+    XCTAssertEqual(url, proxy.registeredURL)
   }
 }
