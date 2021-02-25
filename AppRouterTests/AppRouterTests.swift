@@ -25,6 +25,16 @@ class AppRouterTests: XCTestCase {
     XCTAssertEqual(proxy.registeredURL, url)
   }
 
+  func test_init_navigatorShouldRegisterTwoPaths() {
+    let url = "https://first-test-url.com"
+    let (sut, proxy) = makeSUT(url: url)
+
+    sut.setNavigationMap()
+    sut.setNavigationMap()
+
+    XCTAssertEqual(proxy.registeredURLs, [url, url])
+  }
+
   // MARK: - Helpers
 
   private func makeSUT(url: String = "https://first-test-url.com") -> (sut: AppRouter, proxy: NavigatorProxySpy) {
@@ -36,9 +46,11 @@ class AppRouterTests: XCTestCase {
   private class NavigatorProxySpy: NavigatorProxy {
     var navigator: Navigator = Navigator()
     var registeredURL: String?
+    var registeredURLs = [String]()
 
     func register(from path: String) {
       registeredURL = path
+      registeredURLs.append(path)
     }
   }
 }
