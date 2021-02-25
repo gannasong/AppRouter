@@ -15,6 +15,7 @@
 	- [ ] 路徑配對成功且需要 1 個參數
 	- [ ] 路徑配對成功且需要 2 個參數
 - [ ] 列出的 url path 都需確實被註冊到 navigator 上
+	- [ ] App Router 需要處理多少個 path，navigator 就會相對應要註冊幾次
 
 ## Flowchart
 <img alt="01_trending_repository_screen" src="Images/flowchart_01.png?raw=true">&nbsp;
