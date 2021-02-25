@@ -12,30 +12,38 @@ import URLNavigator
 class AppRouter {
 
   func setNavigationMap() {
-    NavigatorProxy.shared.registeredURL = "https://first-test-url.com"
+    NavigatorProxy.shared.register(from: "https://first-test-url.com")
   }
 }
 
 class NavigatorProxy {
-  static let shared = NavigatorProxy()
+  static var shared = NavigatorProxy()
 
   let navigator = Navigator()
 
-  private init() {}
+  func register(from path: String) {}
+}
 
+class NavigatorProxySpy: NavigatorProxy {
   var registeredURL: String?
+
+  override func register(from path: String) {
+    registeredURL = path
+  }
 }
 
 class AppRouterTests: XCTestCase {
 
   func test_init_navigatorProxyNavigatorShouldNotNil() {
-    let proxy = NavigatorProxy.shared
+    let proxy = NavigatorProxySpy()
     _ = AppRouter()
+
     XCTAssertNotNil(proxy.navigator)
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
-    let proxy = NavigatorProxy.shared
+    let proxy = NavigatorProxySpy()
+    NavigatorProxy.shared = proxy
     let sut = AppRouter()
 
     sut.setNavigationMap()
