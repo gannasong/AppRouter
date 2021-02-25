@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		2469B599967388F282943C57 /* Pods_AppRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B442444482B99C4E892335EE /* Pods_AppRouter.framework */; };
 		3AAB67715203E16922372DF5 /* Pods_AppRouter_AppRouterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E672EAD0AD901ACDF685473 /* Pods_AppRouter_AppRouterTests.framework */; };
+		495D569625E7A96500D66DA3 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495D569525E7A96500D66DA3 /* AppRouter.swift */; };
 		499BB0E725E65CB5002E31AC /* AppRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499BB0DD25E65CB5002E31AC /* AppRouter.framework */; };
 		499BB0EC25E65CB5002E31AC /* AppRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BB0EB25E65CB5002E31AC /* AppRouterTests.swift */; };
-		499BB0EE25E65CB5002E31AC /* AppRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 499BB0E025E65CB5002E31AC /* AppRouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +29,8 @@
 		0B9344311B435699FCDFBDCA /* Pods-AppRouter-AppRouterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter-AppRouterTests.release.xcconfig"; path = "Target Support Files/Pods-AppRouter-AppRouterTests/Pods-AppRouter-AppRouterTests.release.xcconfig"; sourceTree = "<group>"; };
 		0C1D9D35A890B22669CDF3FA /* Pods-AppRouter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppRouter.debug.xcconfig"; path = "Target Support Files/Pods-AppRouter/Pods-AppRouter.debug.xcconfig"; sourceTree = "<group>"; };
 		3E672EAD0AD901ACDF685473 /* Pods_AppRouter_AppRouterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppRouter_AppRouterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		495D569525E7A96500D66DA3 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		499BB0DD25E65CB5002E31AC /* AppRouter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppRouter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		499BB0E025E65CB5002E31AC /* AppRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppRouter.h; sourceTree = "<group>"; };
 		499BB0E125E65CB5002E31AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		499BB0E625E65CB5002E31AC /* AppRouterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppRouterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		499BB0EB25E65CB5002E31AC /* AppRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouterTests.swift; sourceTree = "<group>"; };
@@ -83,8 +83,8 @@
 		499BB0DF25E65CB5002E31AC /* AppRouter */ = {
 			isa = PBXGroup;
 			children = (
-				499BB0E025E65CB5002E31AC /* AppRouter.h */,
 				499BB0E125E65CB5002E31AC /* Info.plist */,
+				495D569525E7A96500D66DA3 /* AppRouter.swift */,
 			);
 			path = AppRouter;
 			sourceTree = "<group>";
@@ -125,7 +125,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				499BB0EE25E65CB5002E31AC /* AppRouter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +181,7 @@
 				TargetAttributes = {
 					499BB0DC25E65CB5002E31AC = {
 						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
 					};
 					499BB0E525E65CB5002E31AC = {
 						CreatedOnToolsVersion = 12.5;
@@ -293,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495D569625E7A96500D66DA3 /* AppRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C1D9D35A890B22669CDF3FA /* Pods-AppRouter.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;
@@ -462,6 +464,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 080BCBD46A64515FB7A50483 /* Pods-AppRouter.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;
@@ -501,6 +505,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E7AC56C05BB53121E92FFA49 /* Pods-AppRouter-AppRouterTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;
 				INFOPLIST_FILE = AppRouterTests/Info.plist;
@@ -521,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B9344311B435699FCDFBDCA /* Pods-AppRouter-AppRouterTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2W4XUH8LUQ;
 				INFOPLIST_FILE = AppRouterTests/Info.plist;

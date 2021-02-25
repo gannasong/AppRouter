@@ -7,31 +7,9 @@
 
 import XCTest
 import URLNavigator
-@testable import AppRouter
-
-class AppRouter {
-  let proxy: NavigatorProxy
-  let url: String
-
-  init(url: String, proxy: NavigatorProxy) {
-    self.url = url
-    self.proxy = proxy
-  }
-
-  func setNavigationMap() {
-    // "https://first-test-url.com"
-    proxy.register(from: url)
-  }
-}
-
-protocol NavigatorProxy {
-  var navigator: Navigator { get set }
-
-  func register(from path: String)
-}
+import AppRouter
 
 class AppRouterTests: XCTestCase {
-
   func test_init_navigatorProxyNavigatorShouldNotNil() {
     let (_, proxy) = makeSUT()
 
