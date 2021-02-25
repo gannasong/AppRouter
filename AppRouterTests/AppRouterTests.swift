@@ -30,32 +30,37 @@ protocol NavigatorProxy {
   func register(from path: String)
 }
 
-class NavigatorProxySpy: NavigatorProxy {
-  var navigator: Navigator = Navigator()
-  var registeredURL: String?
-
-  func register(from path: String) {
-    registeredURL = path
-  }
-}
-
 class AppRouterTests: XCTestCase {
 
   func test_init_navigatorProxyNavigatorShouldNotNil() {
-    let url = "https://first-test-url.com"
-    let proxy = NavigatorProxySpy()
-    _ = AppRouter(url: url, proxy: proxy)
+    let (_, proxy) = makeSUT()
 
     XCTAssertNotNil(proxy.navigator)
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
     let url = "https://first-test-url.com"
-    let proxy = NavigatorProxySpy()
-    let sut = AppRouter(url: url, proxy: proxy)
+    let (sut, proxy) = makeSUT(url: url)
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(url, proxy.registeredURL)
+    XCTAssertEqual(proxy.registeredURL, url)
+  }
+
+  // MARK: - Helpers
+
+  private func makeSUT(url: String = "https://first-test-url.com") -> (sut: AppRouter, proxy: NavigatorProxySpy) {
+    let proxy = NavigatorProxySpy()
+    let sut = AppRouter(url: url, proxy: proxy)
+    return (sut, proxy)
+  }
+
+  private class NavigatorProxySpy: NavigatorProxy {
+    var navigator: Navigator = Navigator()
+    var registeredURL: String?
+
+    func register(from path: String) {
+      registeredURL = path
+    }
   }
 }
