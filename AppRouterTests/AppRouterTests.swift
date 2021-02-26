@@ -45,10 +45,18 @@ class AppRouterTests: XCTestCase {
 
   // MARK: - Helpers
 
-  private func makeSUT(urls: [String] = []) -> (sut: Router, proxy: NavigatorProxySpy) {
+  private func makeSUT(urls: [String] = [], file: StaticString = #file, line: UInt = #line) -> (sut: Router, proxy: NavigatorProxySpy) {
     let proxy = NavigatorProxySpy()
     let sut = Router(urls: urls, proxy: proxy)
+    trackForMemoryLeaks(sut)
+    trackForMemoryLeaks(proxy)
     return (sut, proxy)
+  }
+
+  private func trackForMemoryLeaks(_ instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+    addTeardownBlock { [weak instance] in
+      XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+    }
   }
 
   private class NavigatorProxySpy: NavigatorProxy {
