@@ -12,11 +12,17 @@
 - [X] App 啟動後 URLNavigator navigator 不是 nil
 - [ ] App Router 在 didFinishLaunchingWithOptions 時，註冊所需要操作的 url pattern (對應開啟的 viewController) 
 	- 格式 `https://icook.tw/amp/categories/<int:id>`
+	- 測試：
+	  - 不需要真的註冊，只要確認傳入的值是相同的即可
+	- 開發：
+	  - 需要真的註冊，而且每個 pattern 要處理的參數都不一樣 (在呼叫同隻 function 下，行為要如果處理，且可同時兼顧測試)
 - [ ] App Router 能正確解析 universal link (get query string)，並開啟正確頁面
-	- [ ] 路徑配對成功
-	- [ ] 路徑配對成功且需要 1 個參數
-	- [ ] 路徑配對成功且需要 2 個參數
-
+	- [ ] 是否能正確依照 url pattern 解析 url (無需參數) 
+	- [ ] 是否能正確依照 url pattern 解析 url 且取出參數 (1 個參數)
+	- [ ] 是否能正確依照 url pattern 解析 url 且取出參數 (2 個參數)
+- [ ] 設定好全部的快速開啟頁面 (參數為 pattern 的值)   
+  - 例： `navigator.open("DemoAlert")`
+  - 例： `Navigator.open("myapp://alert?title=Hello&message=World")`
 ## Flowchart
 <img alt="01_trending_repository_screen" src="Images/flowchart_01.png?raw=true">&nbsp;
 ```flow
