@@ -17,37 +17,30 @@ class AppRouterTests: XCTestCase {
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
-    let url = TestPaths.home_01.rawValue
-    let (sut, proxy) = makeSUT(urls: [url])
+    let url = RouterPatterns.home.rawValue
+    let (sut, proxy) = makeSUT()
 
-    sut.setNavigationMap()
+    sut.setNavigationMap(url: url)
 
     XCTAssertEqual(proxy.registeredURLs, [url], "Expected proxy successful register one path.")
   }
 
-  func test_init_navigatorShouldRegisterTwoPaths() {
-    let urls = [TestPaths.home_01.rawValue, TestPaths.home_02.rawValue]
-    let (sut, proxy) = makeSUT(urls: urls)
-
-    sut.setNavigationMap()
-
-    XCTAssertEqual(proxy.registeredURLs, urls, "Expected proxy successful register two paths.")
-  }
-
   func test_init_navigatorShouldRegisterAllPaths() {
-    let urls = TestPaths.allPaths
-    let (sut, proxy) = makeSUT(urls: urls)
+    let urls = RouterPatterns.allPatterns
+    let (sut, proxy) = makeSUT()
 
-    sut.setNavigationMap()
+    urls.forEach { url in
+      sut.setNavigationMap(url: url)
+    }
 
     XCTAssertEqual(proxy.registeredURLs, urls, "Expected proxy successful register all paths.")
   }
 
   // MARK: - Helpers
 
-  private func makeSUT(urls: [String] = [], file: StaticString = #file, line: UInt = #line) -> (sut: Router, proxy: NavigatorProxySpy) {
+  private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Router, proxy: NavigatorProxySpy) {
     let proxy = NavigatorProxySpy()
-    let sut = Router(urls: urls, proxy: proxy)
+    let sut = Router(proxy: proxy)
     trackForMemoryLeaks(sut)
     trackForMemoryLeaks(proxy)
     return (sut, proxy)
@@ -63,8 +56,8 @@ class AppRouterTests: XCTestCase {
     var navigator: Navigator = Navigator()
     var registeredURLs = [String]()
 
-    func register(from paths: [String], completion: () -> Void) {
-      registeredURLs = paths
+    func register(from path: String, completion: () -> Void) {
+      registeredURLs.append(path)
       completion()
     }
   }

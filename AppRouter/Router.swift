@@ -20,31 +20,33 @@ public enum TestPaths: String, CaseIterable {
   }
 }
 
-public enum RouterPatterns: String {
+public enum RouterPatterns: String, CaseIterable {
   case home = "https://icook.tw/"
   case amp_categories = "https://icook.tw/amp/categories/<int:id>"
   case amp_search = "https://icook.tw/amp/search/string:keyword/"
   case richSearch = "https://icook.tw/search/<string:keyword>/<string:ingredients>"
+
+  public static var allPatterns: [String] {
+    RouterPatterns.allCases.map { $0.rawValue }
+  }
 }
 
 public protocol NavigatorProxy {
   var navigator: Navigator { get set }
 
-  func register(from paths: [String], completion: () -> Void)
+  func register(from path: String, completion: () -> Void)
 }
 
 public class Router {
   private let proxy: NavigatorProxy
-  private let urls: [String]
 
-  public init(urls: [String], proxy: NavigatorProxy) {
-    self.urls = urls
+  public init(proxy: NavigatorProxy) {
     self.proxy = proxy
   }
 
-  public func setNavigationMap() {
-    proxy.register(from: urls) {
-      // do production register
+  public func setNavigationMap(url: String) {
+    proxy.register(from: url) {
+      // register all paths to map view controller
     }
   }
 }
