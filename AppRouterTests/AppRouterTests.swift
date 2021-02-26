@@ -13,7 +13,7 @@ class AppRouterTests: XCTestCase {
   func test_init_navigatorProxyNavigatorShouldNotNil() {
     let (_, proxy) = makeSUT()
 
-    XCTAssertNotNil(proxy.navigator)
+    XCTAssertNotNil(proxy.navigator, "Expected navigator not nil when app init.")
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
@@ -22,7 +22,7 @@ class AppRouterTests: XCTestCase {
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, [url])
+    XCTAssertEqual(proxy.registeredURLs, [url], "Expected proxy successful register one path.")
   }
 
   func test_init_navigatorShouldRegisterTwoPaths() {
@@ -31,7 +31,7 @@ class AppRouterTests: XCTestCase {
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, urls)
+    XCTAssertEqual(proxy.registeredURLs, urls, "Expected proxy successful register two paths.")
   }
 
   func test_init_navigatorShouldRegisterAllPaths() {
@@ -40,7 +40,7 @@ class AppRouterTests: XCTestCase {
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, urls)
+    XCTAssertEqual(proxy.registeredURLs, urls, "Expected proxy successful register all paths.")
   }
 
   // MARK: - Helpers
