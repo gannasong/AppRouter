@@ -8,6 +8,16 @@
 import Foundation
 import URLNavigator
 
+public enum TestPaths: String, CaseIterable {
+  case home_01 = "https://icook.tw"
+  case home_02 = "https://icook.tw/"
+  case amp_categories = "https://icook.tw/amp/categories/55"
+
+  public static var allPaths: [String] {
+    TestPaths.allCases.map { $0.rawValue }
+  }
+}
+
 public protocol NavigatorProxy {
   var navigator: Navigator { get set }
 

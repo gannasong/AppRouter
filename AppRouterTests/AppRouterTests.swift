@@ -17,31 +17,30 @@ class AppRouterTests: XCTestCase {
   }
 
   func test_init_navigatorShouldRegisterOnePath() {
-    let path = TestPaths.firstPath.rawValue
-    let (sut, proxy) = makeSUT(urls: [path])
+    let url = TestPaths.home_01.rawValue
+    let (sut, proxy) = makeSUT(urls: [url])
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, [path])
+    XCTAssertEqual(proxy.registeredURLs, [url])
   }
 
   func test_init_navigatorShouldRegisterTwoPaths() {
-    let firstPath = TestPaths.firstPath.rawValue
-    let secondPath = TestPaths.secondPath.rawValue
-    let (sut, proxy) = makeSUT(urls: [firstPath, secondPath])
+    let urls = [TestPaths.home_01.rawValue, TestPaths.home_02.rawValue]
+    let (sut, proxy) = makeSUT(urls: urls)
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, [firstPath, secondPath])
+    XCTAssertEqual(proxy.registeredURLs, urls)
   }
 
   func test_init_navigatorShouldRegisterAllPaths() {
-    let allPaths = TestPaths.allPaths
-    let (sut, proxy) = makeSUT(urls: allPaths)
+    let urls = TestPaths.allPaths
+    let (sut, proxy) = makeSUT(urls: urls)
 
     sut.setNavigationMap()
 
-    XCTAssertEqual(proxy.registeredURLs, allPaths)
+    XCTAssertEqual(proxy.registeredURLs, urls)
   }
 
   // MARK: - Helpers
@@ -59,17 +58,6 @@ class AppRouterTests: XCTestCase {
     func register(from paths: [String], completion: () -> Void) {
       registeredURLs = paths
       completion()
-    }
-  }
-
-  private enum TestPaths: String, CaseIterable {
-    case firstPath = "https://first-test-url.com"
-    case secondPath = "https://second-test-url.com"
-    case thirdPath = "https://third-test-url.com"
-    case fourthPath = "https://fourth-test-url.com"
-
-    static var allPaths: [String] {
-      return TestPaths.allCases.map { $0.rawValue }
     }
   }
 }
