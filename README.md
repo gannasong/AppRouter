@@ -9,13 +9,13 @@
 
 ## Use Cases
 ##### Primary course
-- [ ] App 啟動後 URLNavigator navigator 不是 nil
+- [X] App 啟動後 URLNavigator navigator 不是 nil
+- [ ] App Router 在 didFinishLaunchingWithOptions 時，註冊所需要操作的 url pattern (對應開啟的 viewController) 
+	- 格式 `https://icook.tw/amp/categories/<int:id>`
 - [ ] App Router 能正確解析 universal link (get query string)，並開啟正確頁面
 	- [ ] 路徑配對成功
 	- [ ] 路徑配對成功且需要 1 個參數
 	- [ ] 路徑配對成功且需要 2 個參數
-- [ ] 列出的 url path 都需確實被註冊到 navigator 上
-	- [ ] App Router 需要處理多少個 path，navigator 就會相對應要註冊幾次
 
 ## Flowchart
 <img alt="01_trending_repository_screen" src="Images/flowchart_01.png?raw=true">&nbsp;
