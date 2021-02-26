@@ -47,3 +47,30 @@ cond(no)->op3(right)
 
 ## URLNavigator
 https://github.com/devxoul/URLNavigator
+
+```javascript
+// Test url: https://icook.tw/search/羊肉/空心菜,辣椒/
+navigator.handle("https://icook.tw/search/<string:keyword>/<string:ingredients>") { (url, values, context) -> Bool in
+  if let keyword = values["keyword"] {
+  // get keyword -> "羊肉"
+  }
+
+  if let ingredients = values["ingredients"] {
+  // get ingredients -> "空心菜,辣椒"
+  }
+
+  // do something
+  navigator.present(DemoViewController(), wrap: nil, from: nil, animated: true, completion: nil)
+  return true
+}
+```
+
+#### Match
+```javascript
+let navigator = Navigator()
+let url = "https://icook.tw/search/羊肉/空心菜,辣椒/"
+let pattern = "https://icook.tw/search/<string:keyword>/<string:ingredients>"
+let result = navigator.matcher.match(url, from: [pattern])
+
+// if match pattern, result will be true and reutn values.
+```
