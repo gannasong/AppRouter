@@ -30,23 +30,3 @@ public enum RouterPatterns: String, CaseIterable {
     RouterPatterns.allCases.map { $0.rawValue }
   }
 }
-
-public protocol NavigatorProxy {
-  var navigator: Navigator { get set }
-
-  func register(from path: String, completion: () -> Void)
-}
-
-public class AppRouter {
-  private let proxy: NavigatorProxy
-
-  public init(proxy: NavigatorProxy) {
-    self.proxy = proxy
-  }
-
-  public func setNavigationMap(url: String) {
-    proxy.register(from: url) {
-      // register all paths to map view controller
-    }
-  }
-}
