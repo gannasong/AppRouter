@@ -13,6 +13,10 @@ public class CategoryVC: UIViewController {
     var id: Int?
 }
 
+public class ErrorVC: UIViewController {
+    
+}
+
 public protocol NavigatorProtocol {
     func register(_ pattern: URLPattern, _ factory: @escaping ViewControllerFactory)
 }
@@ -23,7 +27,9 @@ public class AppRouter {
     public init(navigator: NavigatorProtocol) {
         self.navigator = navigator
         navigator.register("https://icook.tw/amp/categories/<int:id>") { (_, value, _) -> UIViewController? in
-            let id = value["id"] as! Int
+            guard let id = value["id"] as? Int else {
+                return ErrorVC()
+            }
             let vc = CategoryVC()
             vc.id = id
             return vc
@@ -53,6 +59,17 @@ class AppRouterTests: XCTestCase {
         
         // then
         XCTAssertEqual(mappedVC?.id, 55)
+    }
+    
+    func test_mapToCategoryVC_onNavigatorExtractEmptyValue() {
+        // given
+        let (_, spy) = makeSUT()
+        
+        //when
+        let mappedVC = spy.triggeredToExtract([:])
+        
+        // then
+        XCTAssertTrue(mappedVC is ErrorVC)
     }
     
     // MARK: - Helpers
