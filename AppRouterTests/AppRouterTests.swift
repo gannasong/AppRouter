@@ -9,6 +9,10 @@ import XCTest
 import URLNavigator
 import AppRouter
 
+public class CategoryVC: UIViewController {
+    var id: Int?
+}
+
 public protocol NavigatorProtocol {
     func register(_ pattern: URLPattern, _ factory: @escaping ViewControllerFactory)
 }
@@ -19,7 +23,10 @@ public class AppRouter {
     public init(navigator: NavigatorProtocol) {
         self.navigator = navigator
         navigator.register("https://icook.tw/amp/categories/<int:id>") { (_, value, _) -> UIViewController? in
-            return nil
+            let id = value["id"] as! Int
+            let vc = CategoryVC()
+            vc.id = id
+            return vc
         }
     }
     
@@ -35,6 +42,17 @@ class AppRouterTests: XCTestCase {
         
         // then
         XCTAssertEqual(spy.registeredPattern, myPattern)
+    }
+    
+    func test_mapToCategoryVC_onNavigatorExtractIntID() {
+        // given
+        let (_, spy) = makeSUT()
+        
+        //when
+        let mappedVC = spy.triggeredToExtract(["id": 55]) as? CategoryVC
+        
+        // then
+        XCTAssertEqual(mappedVC?.id, 55)
     }
     
     // MARK: - Helpers
@@ -58,6 +76,10 @@ class AppRouterTests: XCTestCase {
         private var mapping: (pattern: URLPattern, factory: ViewControllerFactory)?
         func register(_ pattern: URLPattern, _ factory: @escaping ViewControllerFactory) {
             mapping = (pattern, factory)
+        }
+        
+        func triggeredToExtract(_ values: [String: Any]) -> UIViewController? {
+            return mapping?.factory("", values, nil)
         }
     }
     
