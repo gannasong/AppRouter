@@ -37,7 +37,7 @@ public protocol NavigatorProxy {
   func register(from path: String, completion: () -> Void)
 }
 
-public class Router {
+public class AppRouter {
   private let proxy: NavigatorProxy
 
   public init(proxy: NavigatorProxy) {

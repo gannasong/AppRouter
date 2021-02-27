@@ -38,9 +38,9 @@ class AppRouterTests: XCTestCase {
 
   // MARK: - Helpers
 
-  private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: Router, proxy: NavigatorProxySpy) {
+  private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: AppRouter, proxy: NavigatorProxySpy) {
     let proxy = NavigatorProxySpy()
-    let sut = Router(proxy: proxy)
+    let sut = AppRouter(proxy: proxy)
     trackForMemoryLeaks(sut)
     trackForMemoryLeaks(proxy)
     return (sut, proxy)
