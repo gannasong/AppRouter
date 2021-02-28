@@ -26,6 +26,9 @@ public class AppRouter {
     
     public init(navigator: NavigatorProtocol) {
         self.navigator = navigator
+    }
+    
+    public func register() {
         navigator.register("https://icook.tw/amp/categories/<int:id>") { (_, value, _) -> UIViewController? in
             guard let id = value["id"] as? Int else {
                 return ErrorVC()
@@ -39,12 +42,23 @@ public class AppRouter {
 }
 
 class AppRouterTests: XCTestCase {
-    func test_requestRegisterPattern_onInit() {
+    func test_init_nilPattern() {
+        //
+        let spy = NavigatorSpy()
+        let _ = AppRouter(navigator: spy)
+        
+        //
+        XCTAssertNil(spy.registeredPattern)
+    }
+    
+    func test_register_requestNavigatorRegisterPattern() {
         // given
         let myPattern = "https://icook.tw/amp/categories/<int:id>"
+        let spy = NavigatorSpy()
+        let sut = AppRouter(navigator: spy)
         
         //when
-        let (_, spy) = makeSUT()
+        sut.register()
         
         // then
         XCTAssertEqual(spy.registeredPattern, myPattern)
@@ -52,11 +66,11 @@ class AppRouterTests: XCTestCase {
     
     func test_mapToCategoryVC_onNavigatorExtractIntID() {
         // given
-        let (_, spy) = makeSUT()
+        let (sut, spy) = makeSUT()
+        sut.register()
         
         //when
         let mappedVC = spy.mappingVC(from: ["id": 55]) as? CategoryVC
-        
         
         // then
         XCTAssertEqual(mappedVC?.id, 55)
@@ -64,11 +78,12 @@ class AppRouterTests: XCTestCase {
     
     func test_mapToCategoryVC_onNavigatorExtractEmptyValue() {
         // given
-        let (_, spy) = makeSUT()
+        let (sut, spy) = makeSUT()
+        sut.register()
         
         //when
         let mappedVC = spy.mappingVC(from: [:])
-
+        
         // then
         XCTAssertTrue(mappedVC is ErrorVC)
     }
