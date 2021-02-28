@@ -37,6 +37,13 @@
             BlueprintName = "AppRouter"
             ReferencedContainer = "container:AppRouter.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "499BB0E525E65CB5002E31AC"
+            BuildableName = "AppRouterTests.xctest"
+            BlueprintName = "AppRouterTests"
+            ReferencedContainer = "container:AppRouter.xcodeproj">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

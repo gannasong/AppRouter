@@ -55,7 +55,8 @@ class AppRouterTests: XCTestCase {
         let (_, spy) = makeSUT()
         
         //when
-        let mappedVC = spy.triggeredToExtract(["id": 55]) as? CategoryVC
+        let mappedVC = spy.mappingVC(from: ["id": 55]) as? CategoryVC
+        
         
         // then
         XCTAssertEqual(mappedVC?.id, 55)
@@ -66,8 +67,8 @@ class AppRouterTests: XCTestCase {
         let (_, spy) = makeSUT()
         
         //when
-        let mappedVC = spy.triggeredToExtract([:])
-        
+        let mappedVC = spy.mappingVC(from: [:])
+
         // then
         XCTAssertTrue(mappedVC is ErrorVC)
     }
@@ -95,7 +96,7 @@ class AppRouterTests: XCTestCase {
             mapping = (pattern, factory)
         }
         
-        func triggeredToExtract(_ values: [String: Any]) -> UIViewController? {
+        func mappingVC(from values: [String: Any]) -> UIViewController? {
             return mapping?.factory("", values, nil)
         }
     }
