@@ -66,8 +66,7 @@ class AppRouterTests: XCTestCase {
     
     func test_mapToCategoryVC_onNavigatorExtractIntID() {
         // given
-        let (sut, spy) = makeSUT()
-        sut.register()
+        let (_, spy) = makeSUT()
         
         //when
         let mappedVC = spy.mappingVC(from: ["id": 55]) as? CategoryVC
@@ -78,8 +77,7 @@ class AppRouterTests: XCTestCase {
     
     func test_mapToCategoryVC_onNavigatorExtractEmptyValue() {
         // given
-        let (sut, spy) = makeSUT()
-        sut.register()
+        let (_, spy) = makeSUT()
         
         //when
         let mappedVC = spy.mappingVC(from: [:])
@@ -96,6 +94,7 @@ class AppRouterTests: XCTestCase {
     {
         let navigatorSpy = NavigatorSpy()
         let sut = AppRouter(navigator: navigatorSpy)
+        sut.register()
         trackForMemoryLeaks(sut)
         trackForMemoryLeaks(navigatorSpy)
         return (sut, navigatorSpy)
