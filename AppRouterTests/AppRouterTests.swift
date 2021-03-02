@@ -6,152 +6,151 @@
 //
 
 import XCTest
-import URLNavigator
 import AppRouter
-
-public class CategoryVC: UIViewController {
-    var id: Int?
-}
-
-public class ErrorVC: UIViewController {
-    
-}
+import URLNavigator
 
 public protocol NavigatorProtocol {
     func register(_ patterns: URLPattern, _ factory: @escaping ViewControllerFactory)
 }
 
-/* 解釋不動 NavigatorProtocol 的原因：
-AppDelegate -> AppRouter <|- URLNavAppRouter -> NavigatorProtocol <|- (NavigatorSpy || Navigaor)
-                         <|- Some3rdAppRouter -> SomeMockedInterface <|- SomeSpy || SomeConcreate3rdObj
-*/
-
-/*
- 1. 重寫 use case or 拆解/訂正目前的 use case
- 2. 
- 
- */
-
  public class AppRouter {
     private let navigator: NavigatorProtocol
     
-    private var patterns: [String]
-    private var factory: [([String: Any])-> UIViewController?]
+    public typealias Factory = ([String: Any]) -> UIViewController?
     
-    //????
-    public init(navigator: NavigatorProtocol, patterns: [String]) { /// 實驗把 default 數值拿掉
+    public typealias Mapping = (pattern: String, factory: Factory)
+    
+    private var mappings: [Mapping]
+    
+    public init(navigator: NavigatorProtocol, mappings: [Mapping] = []) {
         self.navigator = navigator
-        self.patterns = patterns
+        self.mappings = mappings
     }
     
     public func register() {
-        
-        patterns.forEach { (pattern) in
-            navigator.register(pattern) { (_, value, _) -> UIViewController? in
-                guard let id = value["id"] as? Int else {
-                    return ErrorVC()
+        mappings.forEach { (mapping) in
+            navigator.register(
+                mapping.pattern,
+                { _, value, _ in
+                    mapping.factory(value)
                 }
-                let vc = CategoryVC()
-                vc.id = id
-                return vc
-            }
+            )
         }
-        
-        
     }
-    
 }
 
 class AppRouterTests: XCTestCase {
-    func test_init_nilPattern() { //這個測試名稱要改
-        //
+    func test_init_doesNotMessageCollaborator_onAlways() {
+        // given
+        
+        // when
         let spy = NavigatorSpy()
         let _ = AppRouter(navigator: spy)
         
-        //
+        // then
         XCTAssertTrue(spy.registeredPatterns.isEmpty)
     }
-    
-    func test_register_requestNavigatorRegisterPattern() {
+        
+    func test_register_messageCollaboratorTwice_onTwoMappings() {
         // given
-        let myPattern = "https://icook.tw/amp/categories/<int:id>"
+        let mappings = anyMappings()
+        
         let spy = NavigatorSpy()
-        let sut = AppRouter(navigator: spy, patterns: [myPattern])
+        let sut = AppRouter(navigator: spy, mappings: mappings)
         
         //when
         sut.register()
         
         // then
-        XCTAssertEqual(spy.registeredPatterns, [myPattern])
+        assertMappings(mappings, registeredOn: spy, mappedVCType: AnyViewController.self)
     }
     
-
-    //test_操作_條件_期待的結果
-    func test_register_givenTwoPatterns_reqeustNavigatorRegisterTwice() {
-        // given
-        let p1 = "https://icook.tw/amp/categories/<int:id>"
-        let p2 = "https://icook.tw/amp/test/<int:id>"
-        let spy = NavigatorSpy()
-        let sut = AppRouter(navigator: spy, patterns: [p1, p2])
-        
-        //when
-        sut.register()
-        
-        // then
-        XCTAssertEqual(spy.registeredPatterns, [p1, p2])
+    private func assertMappings<T: UIViewController>(
+        _ mappings: [AppRouter.Mapping],
+        registeredOn spy: NavigatorSpy,
+        mappedVCType type: T.Type,
+        file: StaticString = #file, line: UInt = #line)
+    {
+        assertPatterns(on: mappings, registeredOn: spy)
+        assertFactories(on: mappings, registeredOn: spy, mappedVCType: type)
     }
     
-    /// 可以用以下的 anyPattern 取代上面的 p1, p2
-    private func anyPattern() {
-        
+    private func assertPatterns(
+        on mappings: [AppRouter.Mapping],
+        registeredOn spy: NavigatorSpy,
+        file: StaticString = #file, line: UInt = #line
+    ) {
+        XCTAssertEqual(spy.registeredPatterns, mappings.map { $0.pattern }, file: file, line: line)
     }
     
-    /////////////, 分篩兩個
-    func test_mapToCategoryVC_onNavigatorExtractIntID() {
-        // given
-        let pattern = "https://icook.tw/amp/categories/<int:id>"
-        let (_, spy) = makeSUTAfterRegister(patterns: [pattern])
+    private func assertFactories<T: UIViewController>(
+        on mappings: [AppRouter.Mapping],
+        registeredOn spy: NavigatorSpy,
+        mappedVCType type: T.Type,
+        file: StaticString = #file, line: UInt = #line
+    ) {
+        let actualVCs = spy.registeredFactories.map { $0("",[:], nil)  }
+        let expectedVCs = mappings.map { $0.factory([:]) }
         
-        //when
-        let mappedVC = spy.mappingVC(from: ["id": 55]) as? CategoryVC
-
-        // then
-        XCTAssertEqual(mappedVC?.id, 55)
+        XCTAssertEqual(
+            actualVCs.count, expectedVCs.count,
+            "expect map to \(expectedVCs.count) ViewControllers, but got \(actualVCs.count) instead,",
+            file: file, line: line
+        )
+        
+        expectedVCs.enumerated().forEach { (idx, expectedVC) in
+            XCTAssertTrue(
+                expectedVC is T,
+                "expect map to \(T.self) type, but got \(String(describing: expectedVC.self)) at \(idx)",
+                file: file, line: line
+            )
+        }
     }
-//
-    func test_mapToCategoryVC_onNavigatorExtractEmptyValue() {
-        // given
-        let pattern = "https://icook.tw/amp/categories/<int:id>"
-        let (_, spy) = makeSUTAfterRegister(patterns: [pattern])
-
-        //when
-        let mappedVC = spy.mappingVC(from: [:])
-
-        // then
-        XCTAssertTrue(mappedVC is ErrorVC)
+    
+    private func anyMappings() -> [AppRouter.Mapping] {
+        return [anyMapping(), anyMapping()]
     }
+    
+    private func anyMapping() -> AppRouter.Mapping {
+        return (anyPattern(), anyFactory())
+    }
+    
+    private func anyFactory() -> AppRouter.Factory {
+        return { _ in AnyViewController() }
+    }
+    
+    private func anyPattern() -> String {
+        return "anyPatter://any.com/pattern/<int:id>"
+    }
+    
+    private class AnyViewController: UIViewController {}
     
     // MARK: - Helpers
     private func makeSUTAfterRegister(
-        patterns: [String],
+        mappings: [AppRouter.Mapping],
         file: StaticString = #file,
         line: UInt = #line
     ) -> (sut: AppRouter, navigatorSpy: NavigatorSpy)
     {
         let navigatorSpy = NavigatorSpy()
-        let sut = AppRouter(navigator: navigatorSpy, patterns: patterns)
+        let sut = AppRouter(navigator: navigatorSpy, mappings: mappings)
         sut.register()
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(navigatorSpy)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(navigatorSpy, file: file, line: line)
         return (sut, navigatorSpy)
     }
     
     private class NavigatorSpy: NavigatorProtocol {
         var registeredPatterns: [URLPattern] {
-            return mappings.map {$0.pattern}
+            return mappings.map { $0.pattern }
+        }
+        
+        var registeredFactories: [ViewControllerFactory] {
+            return mappings.map { $0.factory }
         }
         
         private var mappings: [(pattern: URLPattern, factory: ViewControllerFactory)] = []
+        
         func register(_ pattern: URLPattern, _ factory: @escaping ViewControllerFactory) {
             mappings.append((pattern, factory))
         }
