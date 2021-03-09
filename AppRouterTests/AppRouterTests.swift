@@ -95,8 +95,8 @@ class AppRouterTests: XCTestCase {
         let navigatorSpy = NavigatorSpy()
         let sut = AppRouter(navigator: navigatorSpy)
         sut.register()
-        trackForMemoryLeaks(sut)
-        trackForMemoryLeaks(navigatorSpy)
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(navigatorSpy, file: file, line: line)
         return (sut, navigatorSpy)
     }
     
